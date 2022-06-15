@@ -1,11 +1,12 @@
-const express = require('express');
-const app = express();
-const hostname = '127.0.0.1';
-const port = 3001;
+var express = require('express');
+var app = express();
 const sqlite3 = require('sqlite3').verbose();
 const DBPATH = 'curriculoDB.db';
-const bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
+var port = process.env.PORT || 3001;
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+
 app.use(express.static("../frontend/"));
 app.use(express.json());
 /* Definição dos endpoints */
@@ -77,6 +78,6 @@ app.post('/Certificacaoupdate', urlencodedParser, (req, res) => {
 
 
 /* Inicia o servidor */
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(port, () => {
+    console.log(`Server running at ${port}/`);
   });
